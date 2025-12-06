@@ -1,0 +1,95 @@
+{
+    "description": "",
+    "keywords": [
+        "yii2",
+        "framework",
+        "cms"
+    ],
+    "license": "proprietary",
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.4.0",
+        "yiisoft/yii2": "~2.0.45",
+        "yiisoft/yii2-bootstrap5": "^2.0",
+        "yiisoft/yii2-symfonymailer": "^4.0",
+        "yiisoft/yii2-jui": "^2.0",
+        "guzzlehttp/guzzle": "^7.10",
+        "yiisoft/yii2-redis": "^2.0",
+        "michelf/php-markdown": "^2.0",
+        "intervention/image": "^3.11",
+        "alchemy/zippy": "^1.0",
+        "nette/utils": "^4.0",
+        "yiisoft/yii2-imagine": "^2.3",
+        "omnipay/paypal": "^3.0",
+        "stripe/stripe-php": "^17.6",
+        "w7corp/easywechat": "^6.18",
+        "yiisoft/yii2-queue": "^2.3",
+        "endroid/qr-code": "^6.0", 
+        "spatie/array-to-xml": "^3.4",
+        "qcloud/cos-sdk-v5": "^2.6",
+        "upyun/sdk": "^2.2",
+        "symfony/lock": "^7.3",
+        "alibabacloud/green": "^1.8",
+        "phpseclib/phpseclib": "^3.0",
+        "yiisoft/yii2-mongodb": "^3.0",
+        "sunkangchina/getui-pushapi-php-client-v2": "^1.0",
+        "yansongda/pay": "~3.7.0",
+        "php-http/httplug": "^2.4",
+        "illuminate/container": "^12.31",
+        "monolog/monolog": "^3.9",
+        "predis/predis": "^3.2",
+        "mpdf/mpdf": "^8.2"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "~2.1.0",
+        "yiisoft/yii2-gii": "~2.2.0",
+        "yiisoft/yii2-faker": "~2.0.0",
+        "codeception/codeception": "^5.0.0 || ^4.0",
+        "codeception/lib-innerbrowser": "^4.0 || ^3.0 || ^1.1",
+        "codeception/module-asserts": "^3.0 || ^1.1",
+        "codeception/module-yii2": "^1.1",
+        "codeception/module-filesystem": "^3.0 || ^2.0 || ^1.1",
+        "codeception/verify": "^3.0 || ^2.2"
+    },
+    "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true,
+            "php-http/discovery": false
+        },
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "enabled": false
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "yii\\composer\\Installer::postInstall"
+        ],
+        "post-create-project-cmd": [
+            "yii\\composer\\Installer::postCreateProject",
+            "yii\\composer\\Installer::postInstall"
+        ]
+    },
+    "extra": {
+        "yii\\composer\\Installer::postCreateProject": {
+            "setPermission": [
+                {
+                    "runtime": "0777",
+                    "web/assets": "0777",
+                    "yii": "0755"
+                }
+            ]
+        },
+        "yii\\composer\\Installer::postInstall": {
+            "generateCookieValidationKey": [
+                "config/web.php"
+            ]
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
+}

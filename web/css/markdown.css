@@ -1,0 +1,181 @@
+/* Markdown 内容容器 */
+.markdown {
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+/* 标题样式 */
+.markdown h1 {
+    font-size: 24px;
+    color: #007bff;
+    /* 与浮动按钮颜色一致 */
+    margin: 0 0 20px 0;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 8px;
+}
+
+.markdown h2 {
+    font-size: 20px;
+    color: #0056b3;
+    /* 稍深的蓝色 */
+    margin: 0 0 16px 0;
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 6px;
+}
+
+.markdown h3 {
+    font-size: 18px;
+    color: #333;
+    margin: 0 0 12px 0;
+}
+
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+    font-size: 16px;
+    color: #333;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+/* 段落样式 */
+.markdown p {
+    margin: 0 0 16px 0;
+}
+
+/* 列表样式 */
+.markdown ul,
+.markdown ol {
+    padding-left: 24px;
+    margin: 0 0 16px 0;
+}
+
+.markdown ul {
+    list-style-type: disc;
+}
+
+.markdown ol {
+    list-style-type: decimal;
+}
+
+.markdown li {
+    margin-bottom: 12px;
+}
+
+/* 嵌套列表 */
+.markdown ul ul,
+.markdown ol ol,
+.markdown ul ol,
+.markdown ol ul {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+/* 强调文本样式 */
+.markdown strong {
+    color: #0056b3;
+    /* 与悬停效果一致 */
+    font-weight: 600;
+}
+
+.markdown em {
+    font-style: italic;
+    color: #444;
+}
+
+/* 代码样式 */
+.markdown code {
+    background: #f1f3f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 14px;
+    color: #d63384;
+}
+
+/* 块级代码样式 */
+.markdown pre {
+    background: #f1f3f5;
+    padding: 12px;
+    border-radius: 6px;
+    margin: 0 0 16px 0;
+    overflow-x: auto;
+}
+
+.markdown pre code {
+    background: none;
+    padding: 0;
+    font-size: 14px;
+}
+
+/* 引用样式 */
+.markdown blockquote {
+    border-left: 4px solid #007bff;
+    padding: 12px 16px;
+    margin: 0 0 16px 0;
+    background: #f8f9fa;
+    color: #444;
+}
+
+/* 链接样式 */
+.markdown a {
+    color: #007bff !important;
+    text-decoration: none;
+}
+
+.markdown a:hover {
+    text-decoration: underline;
+    color: #0056b3 !important;
+}
+
+/* 表格样式 */
+.markdown table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 16px 0;
+}
+
+.markdown th,
+.markdown td {
+    border: 1px solid #e9ecef;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.markdown th {
+    background: #f1f3f5;
+    font-weight: 600;
+    color: #333;
+}
+
+.markdown td {
+    background: #fff;
+}
+
+/* 图片样式 */
+.markdown img {
+    max-width: 100%;
+    height: auto;
+    margin: 0 0 16px 0;
+    border-radius: 4px;
+}
+
+/* 分割线样式 */
+.markdown hr {
+    border: none;
+    border-top: 1px solid #e9ecef;
+    margin: 24px 0;
+}
+
+/* 确保与 jQuery UI smoothness 主题兼容 */
+.ui-dialog .markdown {
+    max-width: 100%;
+    box-sizing: border-box;
+}

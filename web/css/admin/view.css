@@ -1,0 +1,42 @@
+.detail-view {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.detail-view th,
+.detail-view td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+.detail-view th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #333;
+    width: 30%;
+    text-align: right;
+}
+
+.detail-view td {
+    color: #555;
+}
+
+.detail-view .not-set {
+    color: #6c757d;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {  
+    .detail-view th,
+    .detail-view td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .detail-view th {
+        text-align: left;
+        width: auto;
+    }
+}

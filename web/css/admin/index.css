@@ -1,0 +1,92 @@
+/* 标题样式 */
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+} 
+
+/* 表格整体样式 */
+.grid-view {
+    margin-top: 15px;
+}
+
+.grid-view table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.grid-view th,
+.grid-view td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.grid-view th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #333;
+}
+
+.grid-view th a {
+    color: #333;
+    text-decoration: none;
+}
+
+.grid-view th a:hover {
+    text-decoration: underline;
+}
+
+.grid-view td {
+    vertical-align: middle;
+}
+
+/* 过滤器行样式 */
+.grid-view .filters input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.grid-view .filters input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* 数据行样式 */
+.grid-view tr {
+    transition: background-color 0.2s;
+}
+
+.grid-view tr:hover {
+    background-color: #f1f1f1;
+}
+ 
+
+@media (max-width: 768px) {
+
+    .grid-view th,
+    .grid-view td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .grid-view th:nth-child(2),
+    .grid-view td:nth-child(2),
+    .grid-view th:nth-child(3),
+    .grid-view td:nth-child(3) {
+        min-width: 120px;
+    }
+
+    .btn-success {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+}
