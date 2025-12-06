@@ -1,6 +1,10 @@
 <?php
 
 use Michelf\Markdown;
+
+if (!$content) {
+    return;
+}
 ?>
 <style>
 
