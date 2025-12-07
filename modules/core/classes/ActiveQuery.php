@@ -18,7 +18,7 @@ class ActiveQuery extends \yii\db\ActiveQuery
     /**
      * 分页,返回api格式数据
      */
-    public function page($pageSize = 20)
+    public function page($pageSize = '')
     {
         return $this->pager($pageSize, false);
     }
@@ -28,11 +28,14 @@ class ActiveQuery extends \yii\db\ActiveQuery
      * @param bool $is_php_page 是否返回php分页对象,在PHP视图时需要返回
      * @return array
      */
-    public function pager($pageSize = 20, $is_php_page = true)
+    public function pager($pageSize = '', $is_php_page = true)
     {
+        if (!$pageSize) {
+            $pageSize = Env::getAll('per_page') ?: 20;
+        }
         $query = clone $this;
         $count = $query->count();
-        $page = Yii::$app->request->get('page', 1) - 1;
+        $page  = Env::getAll('page') - 1;
         $pagination = new \yii\data\Pagination([
             'totalCount' => $count,
             'pageSize'   => $pageSize,
