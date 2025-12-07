@@ -645,5 +645,16 @@ function db_transaction($callback)
     return $res;
 }
 
+/**
+ * 上传文件url移除http
+ */
+function upload_url_remove_http($url)
+{
+    if (strpos($url, '://') !== false) {
+        return substr($url, strpos($url, '/uploads'));
+    } else {
+        return $url;
+    }
+}
 
 include __DIR__ . '/notice.php';
