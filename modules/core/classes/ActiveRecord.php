@@ -42,7 +42,30 @@ class ActiveRecord extends \yii\db\ActiveRecord
      * 结束时间
      */
     public $created_at_end;
-
+    /**
+     * 忽略的字段，不记录操作历史
+     */
+    public $changedIgnore = ['updated_at', 'created_at'];
+    /**
+     * 保存后记录操作历史
+     * <pre>
+     * <code>
+     * use app\modules\core\models\DataHis;
+     * public function getDataHis()
+     * {
+     *     return $this->hasMany(DataHis::class, ['table_id' => 'id'])
+     *         ->where(['table_name' => 'order'])
+     *         ->orderBy(['id' => SORT_DESC])
+     *         ->pager(20, true);
+     * }
+     * </code>
+     * </pre>
+     */
+    public $hisTableName = '';
+    /**
+     * 记录说明，如：更新了用户记录
+     */
+    public $hisInfo = '';
     /**
      * 表名
      */
@@ -481,5 +504,33 @@ class ActiveRecord extends \yii\db\ActiveRecord
             $this->setAttribute($virtural_name, $data);
             return true;
         }
+    }
+    /**
+     * 保存后记录操作历史
+     * afterSave($insert, $changedAttributes)
+     */
+    public function afterSaveChanged($changedAttributes)
+    {
+        $oldAttributes = $this->getOldAttributes();
+        $changed = [];
+        foreach ($changedAttributes as $key => $value) {
+            if ($oldAttributes[$key] != $value && !in_array($key, $this->changedIgnore)) {
+                //字段label 原值 现值
+                $changed[$key] = [
+                    'label' => $this->attributeLabels()[$key] ?? $key,
+                    'new_value' => $oldAttributes[$key],
+                    'value' => $value,
+                ];
+            }
+        }
+        $output = [];
+        if ($changed && $this->hisTableName) {
+            $output = $changed;
+            $changed = implode(', ', array_map(function ($item) {
+                return $item['label'] . ': ' . $item['value'] . ' -> ' . $item['new_value'] . "\n";
+            }, $changed));
+            add_his($this->hisTableName, $this->id, "$this->hisInfo: $changed", 'success');
+        }
+        return $output;
     }
 }

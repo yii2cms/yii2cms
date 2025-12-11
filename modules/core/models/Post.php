@@ -2,7 +2,6 @@
 
 namespace app\modules\core\models;
 
-use PhpParser\Node\Expr\FuncCall;
 use Yii;
 
 class Post extends \app\modules\core\classes\ActiveRecord
@@ -92,7 +91,7 @@ class Post extends \app\modules\core\classes\ActiveRecord
         $body = $this->content;
         if (!$body) {
             return '';
-        } 
+        }
         $body = preg_replace_callback('/<img.*?src=[\'"](.*?)[\'"].*?>/i', function ($matches) {
             return '<img src="' . cdn_url($matches[1]) . '" style="width: 100%;" />';
         }, $body);
