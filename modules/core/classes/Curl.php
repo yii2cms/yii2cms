@@ -20,8 +20,9 @@ class Curl
      * @param $option
      */
     public static $option = [
-        'timeout' => 10,
-        'verify' => false,
+        'timeout'     => 60,
+        'verify'      => false,
+        'http_errors' => false,
     ];
     /**
      * PUT 请求

@@ -2,26 +2,26 @@
 
 use yii\helpers\Html;
 ?>
-<form method="post" action="/core/login/index">
+<form method="post" action="/core/login/index" class="layui-form" style="max-width: 420px;">
     <?= Html::hiddenInput(Yii::$app->request->csrfParam, Yii::$app->request->csrfToken) ?>
     <input type="hidden" name="login_type" value="phone">
     <div class="mb-3">
         <label for="phone" class="form-label"><?= Yii::t('app', '手机号码') ?></label>
-        <input type="tel" class="form-control" name="phone" id="phoneInput"
+        <input type="tel" class="layui-input" name="phone" id="phoneInput"
             value="<?= $phone ?? '' ?>" placeholder="<?= Yii::t('app', '请输入手机号码') ?>" required>
     </div>
 
     <?= $this->render('image_captcha', ['id' => 'phone']) ?>
 
     <div class="mb-3 input-group">
-        <input type="text" value="<?= $phone_code ?? '' ?>" name="phone_code" class="form-control" placeholder="<?= Yii::t('app', '手机号码验证码') ?>" required>
-        <button class="btn btn-outline-secondary" type="button" id="phoneCodeBtn">
+        <input type="text" value="<?= $phone_code ?? '' ?>" name="phone_code" class="layui-input" placeholder="<?= Yii::t('app', '手机号码验证码') ?>" required>
+        <button class="layui-btn layui-btn-primary" type="button" id="phoneCodeBtn">
             <?= Yii::t('app', '获取验证码') ?>
         </button>
     </div>
 
-    <div class="d-grid mb-3">
-        <button type="submit" class="btn btn-primary"><?= Yii::t('app', '登录') ?></button>
+    <div class="mb-3">
+        <button type="submit" class="layui-btn layui-bg-blue" style="width:100%;"><?= Yii::t('app', '登录') ?></button>
     </div>
 </form>
 

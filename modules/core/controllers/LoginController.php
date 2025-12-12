@@ -83,7 +83,7 @@ class LoginController extends \app\modules\core\classes\FrontController
         if (!$phone) {
             return $this->asJson([
                 'code' => 1,
-                'msg' => Yii::t('app','手机号不能为空'),
+                'msg' => Yii::t('app', '手机号不能为空'),
             ]);
         }
         // 验证图形验证码
@@ -150,7 +150,7 @@ class LoginController extends \app\modules\core\classes\FrontController
         if (!$captcha_code) {
             return $this->asJson([
                 'code' => 1,
-                'message' => Yii::t('app','图形验证码不能为空'),
+                'message' => Yii::t('app', '图形验证码不能为空'),
             ]);
         }
         /**
@@ -161,7 +161,7 @@ class LoginController extends \app\modules\core\classes\FrontController
         if (strtolower($code) != strtolower($captcha_code)) {
             return $this->asJson([
                 'code' => 1,
-                'message' => Yii::t('app','图形验证码错误'),
+                'message' => Yii::t('app', '图形验证码错误'),
             ]);
         }
     }
@@ -171,6 +171,13 @@ class LoginController extends \app\modules\core\classes\FrontController
         $cache = Yii::$app->cache;
         $data = [];
         $login_type = Cookie::get('admin_login_type', 'account');
+        if (!Yii::$app->request->isPost) {
+            $tab = Yii::$app->request->get('tab');
+            $allow = ['account', 'email', 'phone'];
+            if ($tab && in_array($tab, $allow, true)) {
+                $login_type = $tab;
+            }
+        }
         if (Yii::$app->request->isPost) {
             $login_type  = Yii::$app->request->post('login_type');
             $captcha_code = Yii::$app->request->post('captcha_code_' . $login_type) ?? '';
@@ -198,7 +205,7 @@ class LoginController extends \app\modules\core\classes\FrontController
             Cookie::set('admin_login_type', $login_type, time() + 86400 * 365);
 
             if (!$captcha_code) {
-                Yii::$app->session->setFlash('error', Yii::t('app','图形验证码不能为空'));
+                Yii::$app->session->setFlash('error', Yii::t('app', '图形验证码不能为空'));
                 return $this->render('index', $data);
             }
             /**
@@ -207,7 +214,7 @@ class LoginController extends \app\modules\core\classes\FrontController
             $captchaAction = new CaptchaAction('captcha', $this);
             // 手动验证验证码
             if (!$captchaAction->validate($captcha_code, false)) {
-                Yii::$app->session->setFlash('error', Yii::t('app','图形验证码错误'));
+                Yii::$app->session->setFlash('error', Yii::t('app', '图形验证码错误'));
                 return $this->render('index', $data);
             }
 
@@ -232,7 +239,7 @@ class LoginController extends \app\modules\core\classes\FrontController
                     ->one();
                 if ($user && $user->validatePassword($password)) {
                     if ($user->status == 'disabled') {
-                        Yii::$app->session->setFlash('error', Yii::t('app','用户已被禁用'));
+                        Yii::$app->session->setFlash('error', Yii::t('app', '用户已被禁用'));
                         return $this->render('index', $data);
                     }
                     $user->login('电脑端', '', $user->role);
@@ -241,7 +248,7 @@ class LoginController extends \app\modules\core\classes\FrontController
                     return $this->redirectAdmin([$url]);
                 } else {
                     Log::add("用户{$username}登录失败，邮箱或密码错误", 'error');
-                    Yii::$app->session->setFlash('error', Yii::t('app','邮箱或密码错误'));
+                    Yii::$app->session->setFlash('error', Yii::t('app', '邮箱或密码错误'));
                 }
             } else if ($login_type == 'email') {
                 //邮箱验证码
@@ -249,10 +256,10 @@ class LoginController extends \app\modules\core\classes\FrontController
                 if ($user) {
                     $code = $cache->get('email_login_code_' . $email);
                     if (!is_local() &&  (!$code || $code != $email_code)) {
-                        Yii::$app->session->setFlash('error', Yii::t('app','邮箱验证码错误'));
+                        Yii::$app->session->setFlash('error', Yii::t('app', '邮箱验证码错误'));
                     } else {
                         if ($user->status == 'disabled') {
-                            Yii::$app->session->setFlash('error', Yii::t('app','用户已被禁用'));
+                            Yii::$app->session->setFlash('error', Yii::t('app', '用户已被禁用'));
                             return $this->render('index', $data);
                         }
                         $user->login('电脑端', '', $user->role);
@@ -266,7 +273,7 @@ class LoginController extends \app\modules\core\classes\FrontController
                     }
                 } else {
                     Log::add("用户{$email}登录失败，邮箱不存在", 'error');
-                    Yii::$app->session->setFlash('error', Yii::t('app','邮箱不存在'));
+                    Yii::$app->session->setFlash('error', Yii::t('app', '邮箱不存在'));
                 }
             } else if ($login_type == 'phone') {
                 //手机号验证码
@@ -274,10 +281,10 @@ class LoginController extends \app\modules\core\classes\FrontController
                 if ($user) {
                     $code = $cache->get('phone_login_code_' . $phone);
                     if (!is_local() && (!$code || $code != $phone_code)) {
-                        Yii::$app->session->setFlash('error', Yii::t('app','手机号验证码错误'));
+                        Yii::$app->session->setFlash('error', Yii::t('app', '手机号验证码错误'));
                     } else {
                         if ($user->status == 'disabled') {
-                            Yii::$app->session->setFlash('error', Yii::t('app','用户已被禁用'));
+                            Yii::$app->session->setFlash('error', Yii::t('app', '用户已被禁用'));
                             return $this->render('index', $data);
                         }
                         $user->login('电脑端', '', $user->role);
@@ -291,7 +298,7 @@ class LoginController extends \app\modules\core\classes\FrontController
                     }
                 } else {
                     Log::add("用户{$phone}登录失败，手机号不存在", 'error');
-                    Yii::$app->session->setFlash('error', Yii::t('app','手机号不存在'));
+                    Yii::$app->session->setFlash('error', Yii::t('app', '手机号不存在'));
                 }
             }
         }

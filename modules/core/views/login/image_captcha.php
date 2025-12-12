@@ -1,5 +1,5 @@
 <?php
- 
+
 use yii\captcha\Captcha;
 
 $captcha_code = Yii::$app->request->post('captcha_code') ?? '';
@@ -8,23 +8,21 @@ $captcha_code = Yii::$app->request->post('captcha_code') ?? '';
 <div class="mb-3">
     <label class="form-label"><?= Yii::t('app', '图形验证码') ?></label>
     <?= Captcha::widget([
-        'name' => 'captcha_code_'.$id,
-        'id'   => 'captcha_code_'.$id,
+        'name' => 'captcha_code_' . $id,
+        'id'   => 'captcha_code_' . $id,
         'template' => '
-            <div class="input-group">
+            <div class="captcha-group">
                 {input}
-                <span class="input-group-text p-0 border-0">
-                    {image}
-                </span>
+                {image}
             </div>
         ',
         'options' => [
-            'class' => 'form-control',
+            'class' => 'layui-input',
             'placeholder' => Yii::t('app', '请输入验证码'),
             'autocomplete' => 'off'
         ],
         'imageOptions' => [
-            'id' => 'captcha-'.$id,
+            'id' => 'captcha-' . $id,
             'style' => 'cursor: pointer; height: 38px;',
             'title' => Yii::t('app', '点击刷新验证码'),
         ],
