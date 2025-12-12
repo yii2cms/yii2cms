@@ -657,4 +657,23 @@ function upload_url_remove_http($url)
     }
 }
 
+/**
+ * do_loop 循环执行函数，直到返回true或达到最大次数
+ * @param int $times 最大次数
+ * @param callable $callback 回调函数
+ * @param int $sleep 每次执行间隔秒数
+ * @return mixed
+ */
+function do_loop($times, $callback, $sleep = 1)
+{
+    for ($i = 0; $i < $times; $i++) {
+        $res = $callback();
+        if ($res) {
+            return $res;
+        }
+        sleep($sleep);
+    }
+    return false;
+}
+
 include __DIR__ . '/notice.php';
