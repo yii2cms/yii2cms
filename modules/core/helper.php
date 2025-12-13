@@ -334,6 +334,10 @@ function cookie($name, $value = null, $exp = 0)
  */
 function get_config($key, $default = null)
 {
+    global $shop_id;
+    if (function_exists('get_config_shop') && $shop_id) {
+        return get_config_shop($key, $shop_id);
+    }
     $db_data = app\modules\core\classes\Config::get($key);
     if ($db_data) {
         return $db_data;

@@ -24,7 +24,7 @@ class m240822_010917_language extends Migration
             'name'    => $this->string()->comment('语言名称'),
             'code'    => $this->string()->comment('语言代码'),
             'badge'   => $this->string()->comment('语言标志'),
-            'sort'   => $this->integer()->comment('排序'),
+            'sort'   => $this->bigInteger()->comment('排序'),
             'is_default' => $this->boolean()->comment('是否默认语言')->defaultValue(0),
         ]);
     }

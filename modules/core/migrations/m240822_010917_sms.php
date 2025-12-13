@@ -17,7 +17,7 @@ class m240822_010917_sms extends Migration
             'key'     => $this->string()->comment('短信模板键名')->defaultValue(''),
             'content' => $this->text()->comment('短信模板内容'),
             'type'    => $this->string()->comment('短信模板类型')->defaultValue('default'),   
-            'created_at' => $this->integer()->comment('创建时间'),
+            'created_at' => $this->bigInteger()->comment('创建时间'),
         ]);
     }
 

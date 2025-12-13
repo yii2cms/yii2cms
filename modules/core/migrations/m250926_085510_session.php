@@ -11,7 +11,7 @@ class m250926_085510_session extends Migration
     {
         $this->createTable('{{%session}}', [
             'id' => $this->char(64)->notNull(),
-            'expire' => $this->integer(),
+            'expire' => $this->bigInteger(),
             'data' => $this->binary()
         ]);
         $this->addPrimaryKey('pk-id', '{{%session}}', 'id');

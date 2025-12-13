@@ -19,7 +19,7 @@ class m240822_010917_config extends Migration
             'type'    => $this->string()->comment('类型')->defaultValue('text'),
             'type_value' => $this->json()->comment('类型值'),
             'help'    => $this->longText()->comment('帮助'),
-            'created_at' => $this->integer()->comment('创建时间'),
+            'created_at' => $this->bigInteger()->comment('创建时间'),
         ]);
     }
 

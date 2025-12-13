@@ -18,7 +18,7 @@ class m240822_010918_log extends Migration
             'user_id' => $this->bigInteger()->comment('操作员'),
             'ip' => $this->string()->comment('IP'),
             'agent' => $this->string()->comment('浏览器'),
-            'created_at' => $this->integer()->comment('创建时间'),
+            'created_at' => $this->bigInteger()->comment('创建时间'),
         ]);
     }
 

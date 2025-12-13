@@ -9,7 +9,7 @@ class m250926_085811_user extends Migration
     public function up()
     {
         $this->createTable('user', [
-            'id' => $this->primaryKey(),
+            'id' => $this->bigPrimaryKey(),
             'username' => $this->string(255)->notNull(),
             'email' => $this->string(255)->null(),
             'phone' => $this->string(255)->null(),
@@ -20,8 +20,8 @@ class m250926_085811_user extends Migration
             'nickname' => $this->string(255)->null(),
             'avatar' => $this->string(255)->null(),
             'status' => $this->string(20)->defaultValue('active'),
-            'created_at' => $this->integer()->notNull(),
-            'updated_at' => $this->integer()->null(),
+            'created_at' => $this->bigInteger()->notNull(),
+            'updated_at' => $this->bigInteger()->null(),
         ]);
     }
 

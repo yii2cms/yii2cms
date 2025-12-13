@@ -19,8 +19,8 @@ class m240822_010920_upload extends Migration
             'size' => $this->float()->notNull(),
             'type' => $this->string()->notNull(),
             'ext' => $this->string()->notNull(),
-            'used' => $this->integer()->defaultValue(0),
-            'created_at' => $this->integer()->notNull(),
+            'used' => $this->bigInteger()->defaultValue(0),
+            'created_at' => $this->bigInteger()->notNull(),
         ]);
     }
 

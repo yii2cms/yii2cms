@@ -23,9 +23,9 @@ class m240822_010917_notice extends Migration
             'status' => $this->smallInteger()->comment('状态')->notNull()->defaultValue(0),
             'type'       => $this->string(100)->comment('发送方式')->notNull(),   
 
-            'send_at' => $this->integer()->comment('发送时间'),
-            'created_at' => $this->integer()->comment('创建时间'),
-            'updated_at' => $this->integer()->comment('更新时间'),
+            'send_at' => $this->bigInteger()->comment('发送时间'),
+            'created_at' => $this->bigInteger()->comment('创建时间'),
+            'updated_at' => $this->bigInteger()->comment('更新时间'),
         ]);
 
         //消息发送记录
@@ -35,8 +35,8 @@ class m240822_010917_notice extends Migration
             'type'       => $this->string(100)->comment('发送方式')->notNull(),
             'account'    => $this->string()->comment('接收账号')->notNull()->defaultValue(''),
 
-            'created_at' => $this->integer()->comment('创建时间'),
-            'updated_at' => $this->integer()->comment('更新时间'),
+            'created_at' => $this->bigInteger()->comment('创建时间'),
+            'updated_at' => $this->bigInteger()->comment('更新时间'),
         ]);
     }
 
